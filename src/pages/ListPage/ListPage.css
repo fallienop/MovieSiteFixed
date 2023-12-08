@@ -1,5 +1,13 @@
+*{        user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;}
+
 .list-page {
-    padding: 42px calc(50% - 300px);
+    /* padding: 42px calc(50% - 300px); */
+    width: 80%;
+    margin: 0 auto;
 }
 
 .list-page__title {
@@ -10,3 +18,60 @@
 .list-page ul li {
     font-size: 18px;
 }
+h1{
+    text-align: center;
+}
+.alist .listtitle{
+   display: flex;
+ 
+    width: 98.4%;
+    height: 30px;
+    background-color: #e8f1ff;
+    font-size: 30px;
+    color:#115eec;
+    padding: 10px;
+}
+
+
+.switch{
+    margin-top: 5px;
+    position: absolute;
+    left: 1340px;
+}
+
+
+
+
+
+  .hideandcollapse {
+    display: inline-block; /* veya istediğiniz bir display değeri */
+    transition: transform 0.5s; /* Dönme efekti için geçiş süresi */
+    transform: rotate(180deg);
+  }
+  
+
+
+
+
+
+  .listmoviehide {
+    opacity: 0;
+    max-height: 0;
+    
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .listmovieshow {
+    opacity: 1;
+    max-height: 1000px; /* Set a maximum height that is large enough to accommodate your content */
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  padding: 10px;
+
+  }
+ 
+  .alist{
+    border:1px  solid lightblue;
+    margin-bottom: 20px;
+
+  }

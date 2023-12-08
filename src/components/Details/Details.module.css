@@ -1,0 +1,27 @@
+
+.main{
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.movietitle{
+    margin-bottom: 20px;
+    text-align: center;
+}
+img{
+   border-radius: 20px;
+   margin: 0 auto;
+   display: block;
+}
+.gotomovie{
+
+    display: block;
+    width: fit-content;
+    background-color: cyan;
+    color: white;
+    padding: 7px;
+    text-decoration: none;
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-top: 5px;
+}

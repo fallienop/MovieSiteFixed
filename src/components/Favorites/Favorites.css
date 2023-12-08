@@ -31,3 +31,28 @@
     opacity: 0.9;
     transition: all 0.2s linear;
 }
+
+.limarg{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.favoriteMovie{
+    display: flex;
+    margin-bottom: 5px;
+}
+.removeButton{
+    
+    color:white;
+    font-size: 18px;
+    /* padding-right: 15px; */
+    background-color: red;
+    transform: rotate(45deg);
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    position: absolute;
+    right: 280px;
+}
+.removeButton:hover{
+    background-color: purple;
+}

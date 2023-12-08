@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component ,useEffect} from 'react';
 import MovieItem from '../MovieItem/MovieItem';
 import './Movies.css';
+import { connect } from 'react-redux';
+
+
+
+
 
 class Movies extends Component {
     state = { 
@@ -19,9 +24,57 @@ class Movies extends Component {
                 poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
 
             }
-        ]
+        ],
+        searchdata:""
     }
+
+     getMoviesBySearch=async (search)=>{
+         
+        const response=await fetch(`https://www.omdbapi.com/?s=${search}&apikey=f1d20451`);
+        const data=await response.json();
+        return data;
+
+    }   
+
+
+  
+componentDidUpdate(prevProps){
+
+    if(prevProps.searchdata!==this.props.searchdata){
+        this.getMoviesBySearch(this.props.searchdata).then(res=>{
+
+         try{
+            const newMovies=res.Search.map(movie=>({
+                  
+                imdbID: movie.imdbID,
+             title: movie.Title,
+             year: movie.Year,
+             poster: movie.Poster
+              
+         }));
+         this.setState(prevState=>({
+            movies:[...newMovies]
+    }))
+         }
+           
+         catch(err){
+
+         }
+           
+           
+        })
+    }
+}
+
+
+
+
+
     render() { 
+
+        
+ 
+
         return ( 
             <ul className="movies">
                 {this.state.movies.map((movie) => (
@@ -33,5 +86,11 @@ class Movies extends Component {
         );
     }
 }
+
+const mapStateToProps=(state)=>{
+    return {
+     searchdata : state.movemovie.searchinput
+    }
+}
  
-export default Movies;
+export default connect(mapStateToProps)( Movies);

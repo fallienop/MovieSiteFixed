@@ -1,28 +1,51 @@
 import React, { Component } from 'react';
 import './ListPage.css';
+import { connect } from 'react-redux';
 
 class ListPage extends Component {
     state = {
         movies: [
             { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
-        ]
+        ],
+        isCollapsedStates: Array(this.props.savedLists.length).fill(false)
     }
-    componentDidMount() {
-        const id = this.props.match.params;
-        console.log(id);
-        // TODO: запрос к сервер на получение списка
-        // TODO: запросы к серверу по всем imdbID
+
+    toggleCollapse = (index) => {
+        this.setState((prevState) => {
+            const updatedCollapsedStates = [...prevState.isCollapsedStates];
+            updatedCollapsedStates[index] = !updatedCollapsedStates[index];
+            return {
+                isCollapsedStates: updatedCollapsedStates
+            };
+        });
     }
-    render() { 
+
+    render() {
+        const { isCollapsedStates } = this.state;
+        const { savedLists } = this.props;
+
         return (
             <div className="list-page">
-                <h1 className="list-page__title">Мой список</h1>
-                <ul>
-                    {this.state.movies.map((item) => {
+                <h1 className="list-page__title">My Lists</h1>
+                <ul className='mainList'>
+                    {savedLists.map((item, index) => {
                         return (
-                            <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
-                            </li>
+                            <div className='alist' key={item.title}>
+                                <div className='listtitle'>
+                                    <p>{item.title==""?"Untitled List":item.title}</p>
+                                    <div onClick={() => this.toggleCollapse(index)} className={`switch ${isCollapsedStates[index] ? "hideandcollapse" : ""}`}><p>^</p></div>
+                                </div>
+                                {item.listmovies.map((movie, movieIndex) => {
+                                    return (
+                                        <div key={movieIndex} className={isCollapsedStates[index] ? "listmovieshow" : "listmoviehide"}>
+                                            <li style={{ display: 'flex', marginTop: '10px', gap: '20px' }}>
+                                                <img alt="moviet" width={'80px'} height={'80px'} style={{ borderRadius: '50px' }} src={movie.poster} />
+                                                <p style={{ marginTop: "20px" }}>{movie.title} ({movie.year})</p>
+                                            </li>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         );
                     })}
                 </ul>
@@ -30,5 +53,11 @@ class ListPage extends Component {
         );
     }
 }
- 
-export default ListPage;
+
+const mapStateToProps = (state) => {
+    return {
+        savedLists: state.movemovie.savedLists
+    }
+}
+
+export default connect(mapStateToProps)(ListPage);
