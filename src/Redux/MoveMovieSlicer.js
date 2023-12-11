@@ -35,10 +35,13 @@ export const MoveMovieSlicer = createSlice({
         },
         removeApiMovie:(state,action)=>{
             state.apimovies.splice(Number(action.payload),1)
+        },
+        removeList:(state,action)=>{
+            state.savedLists.splice(Number(action.payload),1)
         }
     }
 
 })
 
-export const {movemovies,movesearch,savelist,clearapimovies,setDetails,removeApiMovie} =  MoveMovieSlicer.actions
+export const {movemovies,movesearch,savelist,clearapimovies,setDetails,removeApiMovie,removeList} =  MoveMovieSlicer.actions
 export default MoveMovieSlicer.reducer

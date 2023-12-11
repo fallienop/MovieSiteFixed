@@ -1,4 +1,4 @@
-import React, { Component ,useEffect} from 'react';
+import React, { Component } from 'react';
 import MovieItem from '../MovieItem/MovieItem';
 import './Movies.css';
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ class Movies extends Component {
         movies: [
             {
                 imdbID: 'tt3896198',
-                title: "Guardians of the Galaxy Vol. 2",
+                title: "Guardians of the sGalaxy Vol. 2",
                 year: 2017,
                 poster: "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
 

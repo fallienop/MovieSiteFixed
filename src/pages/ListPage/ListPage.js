@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ListPage.css';
 import { connect } from 'react-redux';
-
+import { removeList } from '../../Redux/MoveMovieSlicer';
 class ListPage extends Component {
     state = {
         movies: [
@@ -19,6 +19,10 @@ class ListPage extends Component {
             };
         });
     }
+    removeListByIndex=(movieIndex)=>{
+    this.props.removeList(movieIndex);
+
+    }
 
     render() {
         const { isCollapsedStates } = this.state;
@@ -33,6 +37,7 @@ class ListPage extends Component {
                             <div className='alist' key={item.title}>
                                 <div className='listtitle'>
                                     <p>{item.title==""?"Untitled List":item.title}</p>
+                                     <button onClick={()=>this.removeListByIndex(index)} className='removeListButton'>+</button>
                                     <div onClick={() => this.toggleCollapse(index)} className={`switch ${isCollapsedStates[index] ? "hideandcollapse" : ""}`}><p>^</p></div>
                                 </div>
                                 {item.listmovies.map((movie, movieIndex) => {
@@ -41,6 +46,8 @@ class ListPage extends Component {
                                             <li style={{ display: 'flex', marginTop: '10px', gap: '20px' }}>
                                                 <img alt="moviet" width={'80px'} height={'80px'} style={{ borderRadius: '50px' }} src={movie.poster} />
                                                 <p style={{ marginTop: "20px" }}>{movie.title} ({movie.year})</p>
+                      
+
                                             </li>
                                         </div>
                                     );
@@ -59,5 +66,8 @@ const mapStateToProps = (state) => {
         savedLists: state.movemovie.savedLists
     }
 }
+const mapDispatchToProps={
+    removeList
+}
 
-export default connect(mapStateToProps)(ListPage);
+export default connect(mapStateToProps,mapDispatchToProps)(ListPage);

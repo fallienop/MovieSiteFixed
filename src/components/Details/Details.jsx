@@ -12,7 +12,7 @@ const Details = () => {
   
    <h2 className={style.movietitle}>{movieDetail.title}</h2>
        <img src={movieDetail.poster} alt="poster"/>
-   <a target={'_blank'} className={style.gotomovie} href={`https://www.imdb.com/title/${movieDetail.imdbID}`}>go to movie</a>
+   <a style={{marginBottom:'20px'}} target={'_blank'} className={style.gotomovie} href={`https://www.imdb.com/title/${movieDetail.imdbID}`}>go to movie</a>
    
    
     </div>  

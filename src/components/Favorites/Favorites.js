@@ -21,13 +21,16 @@ class Favorites extends Component {
     saveListToStore = () => {
         const { movies } = this.props;
         const { savedLists } = this.props;
+        const inputvalue=this.inputt.current.value;
+        if(!savedLists.find(lists=>{
+            return lists.title==inputvalue
+        })){
     
-       const inputvalue=this.inputt.current.value;
        
         this.props.savelist({title:inputvalue,listmovies:movies});
          this.props.clearapimovies();
     this.inputt.current.value='';
-       
+        }
       };
   
       removeApiMovieByIndex=(ind)=>{
@@ -44,8 +47,8 @@ class Favorites extends Component {
                 <ul className="favorites__list">
                     {movies.map((item,index) => {
                         
-                        return <div className='favoriteMovie'><li className='limarg' key={item.imdbID} >  {item.title} ({item.year})</li>
-                         <button onClick={()=>this.removeApiMovieByIndex(index)} className='removeButton'>+</button>
+                        return <div className='favoriteMovie' key={item.imdbID}><li className='limarg' key={item.imdbID} >  {item.title} ({item.year})</li>
+                         <button onClick={()=>this.removeApiMovieByIndex(index)} className='removeMovieButton'>+</button>
                          </div> ;
                     })}
                 </ul>
